@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Traffic light timer</title>
+  <style>
+    #trafficlight {
+      width: 100px;
+      height: 300px;
+      background-color: #434343;
+      margin: 10px auto 0px auto;
+      padding: 10px;
+      border-radius: 15px;
+    }
+
+    .lamp {
+      border-radius: 100%;
+      width: 80;
+      height: 80;
+      padding: 45px;
+      margin: 5px;
+    }
+
+    #red {
+      background-color: #331111;
+    }
+
+    #yellow {
+      background-color: #222211;
+    }
+
+    #green {
+      background-color: #113311;
+    }
+
+    div.red>#red {
+      background-color: #EE0000;
+    }
+
+    div.yellow>#yellow {
+      background-color: #DDDD00;
+    }
+
+    div.green>#green {
+      background-color: #00EE00;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="trafficlight">
+    <div id="green" class="lamp"></div>
+    <div id="yellow" class="lamp"></div>
+    <div id="red" class="lamp"></div>
+  </div>
+  <script>
+    const timeout = timer => () => new Promise(resolve => setTimeout(resolve, timer));
+    const green = timeout(10000);
+    const yellow = timeout(3000);
+    const red = timeout(5000);
+
+    const trafficLight = document.querySelector('#trafficlight');
+
+    (function autoTrafficLight() {
+      'use strict';
+      trafficLight.className = 'green';
+      green()
+        .then(() => {
+          trafficLight.className = 'yellow';
+          return yellow();
+        })
+        .then(() => {
+          trafficLight.className = 'red';
+          return red();
+        })
+        .then(() => autoTrafficLight());
+    })();
+  </script>
+</body>
+
+</html>
