@@ -8,6 +8,7 @@ const quick_sort = origArray => {
     let right = [];
     let newArray = [];
     let pivot = origArray.pop();
+    // you can also use Array.shift() method to extract the first element of the array
 
     for (const i of origArray) {
       i <= pivot ? left.push(i) : right.push(i);
