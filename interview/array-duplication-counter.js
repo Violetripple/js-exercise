@@ -20,6 +20,7 @@ function countDup(arr = []) {
     arr.forEach((val) => {
       if (val === uniqueVal) {
         n++;
+        delete arr[index];
       }
     });
     map.set(uniqueVal, n);
