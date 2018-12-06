@@ -25,7 +25,7 @@ function fibonacci2() {
   let fn;
   return function f() {
     const len = fibonacciArray.length;
-    fn = fibonacciArray.slice(len - 2, len).reduce((pre, cur) => pre + cur);
+    fn = fibonacciArray.slice(-2).reduce((pre, cur) => pre + cur);
     fibonacciArray.push(fn);
     console.log(fibonacciArray);
     return fn;
